@@ -2,7 +2,7 @@
   Copyright © 2019 Evgeniy Filimonov <evgfilim1@gmail.com>
   See full NOTICE at http://github.com/YummyTacos/YTCTF -->
 <template>
-    <div class="toast" role="alert" :id="'notification' + notification.id">
+    <div class="toast border border-light rounded" role="alert" :id="'notification' + notification.id">
         <div class="toast-header" :class="colorClass">
             <strong class="mr-auto">{{ header }}</strong>
             <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">

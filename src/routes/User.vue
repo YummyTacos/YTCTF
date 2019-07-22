@@ -27,7 +27,7 @@
                     <summary>Решённые таски</summary>
                     <div v-for="task in user.solved_tasks"
                          :key="task.id">
-                        <router-link :to="{name: 'task', params: {task_id: task.id}}">
+                        <router-link :to="{name: 'task', params: {id: task.id}}">
                             {{ task.title }} ({{ task.category.name }}{{ task.points }})
                         </router-link>
                         <abbr v-if="user.first_blood_tasks.find((e) => e.id === task.id)"
@@ -35,16 +35,15 @@
                             (first blood)
                         </abbr>
                     </div>
-                    <!--<br/>-->
                 </details>
                 <details v-if="user.author_of_tasks.length">
                     <summary>Созданные таски</summary>
-                    <router-link v-for="task in user.author_of_tasks"
-                                 :key="task.id"
-                                 :to="{name: 'task', params: {task_id: task.id}}">
-                        {{ task.task }} ({{ task.category }}{{ task.points }})
-                    </router-link>
-                    <!--<br/>-->
+                    <div v-for="task in user.author_of_tasks"
+                         :key="task.id">
+                        <router-link :to="{name: 'task', params: {id: task.id}}">
+                            {{ task.title }} ({{ task.category.name }}{{ task.points }})
+                        </router-link>
+                    </div>
                 </details>
             </div>
         </div>
