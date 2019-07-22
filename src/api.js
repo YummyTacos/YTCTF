@@ -6,7 +6,7 @@ import jQuery from "jquery";
 
 let token = null;
 const storageTokenKey = 'token';
-const baseUrl = 'http://api.ctf.yummytacos.me'; // Change this if you have your own API
+const baseUrl = 'https://api.ctf.yummytacos.me'; // Change this if you have your own API
 
 function request(httpMethod, apiMethod, options) {
     const data = options.data || {};
