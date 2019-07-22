@@ -3,13 +3,13 @@
   See full NOTICE at http://github.com/YummyTacos/YTCTF -->
 <template>
     <router-link :to="{name: 'task', params: {'id': task.id}}" class="task-card rounded"
-       :class="[task.category.name, {solved: task.solved || task.authored}]">
+       :class="[task.category.name, {solved: isSolved}]">
         <p class="name">{{ task.title }}</p>
         <span class="points">{{ task.points }}</span>
         <span class="category">{{ task.category.name }}</span>
         <br/>
         <span class="solved-count">
-            {{ solved }}
+            {{ solvedCount }}
         </span>
     </router-link>
 </template>
@@ -21,7 +21,7 @@
             task: Object
         },
         computed: {
-            solved() {
+            solvedCount() {
                 let solvedLine = this.task.solved_by.length;
                 const t = this.task.solved_by.length % 100;
                 if (t % 10 === 0 || t % 10 >= 5 || (11 <= t && t <= 14)) {
@@ -32,6 +32,14 @@
                     solvedLine += ' человека решили';
                 }
                 return solvedLine;
+            },
+            isSolved() {
+                const u = this.$store.state.user;
+                if (u === null) {
+                    return false
+                }
+                return this.task.author.id === u.id ||
+                    this.task.solved_by.filter((e) => e.id === u.id).length !== 0
             }
         }
     }
@@ -45,16 +53,10 @@
         transition: 0.125s;
         padding: 1rem;
         position: relative;
-        opacity: 0.75;
+        opacity: 0.85;
         background: #777777;
         text-decoration: none;
         color: inherit;
-
-        &:hover {
-            opacity: 1;
-            text-decoration: none;
-            color: inherit;
-        }
 
         .name {
             font-size: 1.5rem;
@@ -70,7 +72,13 @@
         }
 
         &.solved {
-            opacity: 0.5;
+            opacity: 0.45;
+        }
+
+        &:hover {
+            opacity: 1;
+            text-decoration: none;
+            color: inherit;
         }
     }
 
