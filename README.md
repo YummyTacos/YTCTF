@@ -1,6 +1,8 @@
 # YTCTF Platform
 YummyTacos CTF platform frontend
 
+**IMPORTANT:** This version of YTCTF platform frontend is now _archived and considered legacy_. New frontend is coming soon. Stay tuned!
+
 ## Project setup
 ```
 npm install
